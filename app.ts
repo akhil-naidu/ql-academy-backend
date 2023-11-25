@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: ['*'],
-    // credentials: true,
+    credentials: true,
   }),
 );
 
@@ -58,6 +58,14 @@ app.all('*', (req: Request, res: Response, next: NextFunction) => {
   const err = new Error(`Route ${req.originalUrl} not found`) as any;
   err.statusCode = 404;
   next(err);
+});
+
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
 });
 
 // middleware calls
