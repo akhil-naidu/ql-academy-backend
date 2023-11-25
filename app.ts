@@ -21,7 +21,7 @@ app.use(cookieParser());
 // cors => cross origin resource sharing
 app.use(
   cors({
-    origin: ['https://ql-academy-website-production.up.railway.app/'],
+    origin: ['*'],
     credentials: true,
   }),
 );
